@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useState } from 'react';
+import Users from './components/Users/Users';
+// import NewUser from './components/NewUser/NewUser';
+import UserForm from './components/Users/UserForm';
 
-function App() {
+// const DUMMY_USERS = [
+//   {name: 'Okikiola Dare', age: 29, id: 'user1' },
+//   {name: 'Daniel Simpson', age: 40, id: 'user2' }
+// ];
+
+const App = () => {
+  const [users, setUsers] = useState('');
+
+  const addUserHandler = (name, age) => {
+    //console.log(user)
+    setUsers((prevUsers) => {
+      // return [user, ...prevUsers];
+      // Get the userdata as an object
+      return [...prevUsers, {name, age, id: Math.random().toString()}];
+    });
+    console.log(users)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // React.Fragment same as <></>
+    <Fragment>
+      {/* <NewUser onAddUser={addUserHandler} /> */}
+      <UserForm onAddUser={addUserHandler} />
+      <Users items={users} />
+    </Fragment>
   );
 }
 
