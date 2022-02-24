@@ -39,8 +39,8 @@ const UserForm = (props) => {
     // props.onSaveUser(userData);
     props.onAddUser(enteredName, enteredAge);
 
-    enteredName.current.value = '';
-    enteredAge.current.value = '';
+    nameInputRef.current.value = '';
+    ageInputRef.current.value = '';
   }
 
   return (
